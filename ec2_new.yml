@@ -35,4 +35,4 @@
     - name: Instance info
       debug:
         msg: "{{ item.id }} {{ item.public_ip }}"
-with_items: "{{ ec2.instances }}"
+      with_items: "{{ ec2.instances }}"

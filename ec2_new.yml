@@ -28,7 +28,7 @@
         count: "{{ count }}"
         wait: yes
         instance_tags: "{{ tags }}"
-        user_data: "{{ lookup('file', 'ec2_bootstrap.sh') }}"
+        user_data: "{{ lookup('file', 'user-data') }}"
         assign_public_ip: "{{ assign_eip | default(true) }}"
       register: ec2
 

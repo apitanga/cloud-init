@@ -1,3 +1,4 @@
+#cloud-config
 users:
   - name: ansible
     primary_group: ansible

@@ -1,6 +1,5 @@
 #cloud-config
 users:
-  - default
   - name: demo
     groups: sudo
     shell: /bin/bash

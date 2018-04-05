@@ -2,10 +2,10 @@
 users:
 - default
 - name: demo
-   groups: sudo
-   shell: /bin/bash
-   sudo: ['ALL=(ALL) NOPASSWD:ALL']
-   ssh-authorized-keys:
-    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAAubZNP7tqrmmRnVvyPJBSyy1QBFYxoO++33eGq+6FlmKBVl2IIvYnz1H8VT94bG7w0teBrXx5cVQ1uLrrz67O940mjoQRWDkYx6GIWcR/qEvkUUFgHpNzZyRCptnrXG2PJsn8HSgeJfmOB/ZaHHwBFCWbTNSyab0wZ1wzLIpLXECRG69lPBIARI65uWs/Le03gHNXvzImC3YcsREKbqyvrVIHX0KzKKwfhGfytiZOLtqNRUNrMZ3XV3T9boo7DDwJgwjJyqwJe6y6o4gMrkOoulr+gK81+vr/d2dkFqILoSD+ommN6EKBuJr4qzqDBua7nk8pJSx1BbvCDxK+/ZnMP0CPdGGXR7ZcnldW/Uy7ZFUugJMbRUPX/9w5TEFLdVR7cpkGRgB1003Rsdm+X6gV7WFtycWtZxsFaZnhamZKrBSRt3W+jRLFGfC8S1W3ZgKYWMtRr0uNh5dv+6PexAlEHOqbGi9HuC1BwiIzmrCKNgxFrPtdoLjFrwmSNGC7Psel8DfCTc3Bv7NioDZtUG/OJpsfouH/tE4Xsf0p1jBaP6VYeCUUKY/Z1ajjLC8GcWV/Cu0z6ET3MWis6oZcnGa6z5c12iVVANSeTTdlqDNQnipc3L+ZE+ZjkbT8gQkacxJ4h0ODBjueDvEmXlulrjZ091ksO/ZQSwTlY/dAuWQeNv==
+  groups: sudo
+  shell: /bin/bash
+  sudo: ['ALL=(ALL) NOPASSWD:ALL']
+  ssh-authorized-keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAAubZNP7tqrmmRnVvyPJBSyy1QBFYxoO++33eGq+6FlmKBVl2IIvYnz1H8VT94bG7w0teBrXx5cVQ1uLrrz67O940mjoQRWDkYx6GIWcR/qEvkUUFgHpNzZyRCptnrXG2PJsn8HSgeJfmOB/ZaHHwBFCWbTNSyab0wZ1wzLIpLXECRG69lPBIARI65uWs/Le03gHNXvzImC3YcsREKbqyvrVIHX0KzKKwfhGfytiZOLtqNRUNrMZ3XV3T9boo7DDwJgwjJyqwJe6y6o4gMrkOoulr+gK81+vr/d2dkFqILoSD+ommN6EKBuJr4qzqDBua7nk8pJSx1BbvCDxK+/ZnMP0CPdGGXR7ZcnldW/Uy7ZFUugJMbRUPX/9w5TEFLdVR7cpkGRgB1003Rsdm+X6gV7WFtycWtZxsFaZnhamZKrBSRt3W+jRLFGfC8S1W3ZgKYWMtRr0uNh5dv+6PexAlEHOqbGi9HuC1BwiIzmrCKNgxFrPtdoLjFrwmSNGC7Psel8DfCTc3Bv7NioDZtUG/OJpsfouH/tE4Xsf0p1jBaP6VYeCUUKY/Z1ajjLC8GcWV/Cu0z6ET3MWis6oZcnGa6z5c12iVVANSeTTdlqDNQnipc3L+ZE+ZjkbT8gQkacxJ4h0ODBjueDvEmXlulrjZ091ksO/ZQSwTlY/dAuWQeNv==
 runcmd:
-  - touch /test.txt
+- touch /test.txt

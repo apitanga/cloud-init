@@ -1,7 +1,7 @@
 #!/bin/bash
 
 domain=${DOMAIN:-pitanga.org}
-tower=$(dig +short _cm._tcp.${domain} srv | awk {print $4}')
+tower=$(dig +short _cm._tcp.${domain} srv | awk '{print $4}')
 host_config_id=d7fab6e1df8191c1f8199ff05258c349
 template_id=17
 

@@ -5,7 +5,7 @@
   connection: local
 
   vars:
-    region:   "{{ region | us-west-2 }}
+    region:   "{{ region | default('us-west-2') }}
     ami:      "{{ ami | default('you need to define this')  }}"
     keypair:  "{{ ec2_keypair_name | default('you need to define this') }}"
     set_dns:  False

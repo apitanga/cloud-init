@@ -13,7 +13,7 @@
     - name: launch instance
       local_action:
         module: ec2
-        count: {{ count }}
+        count: "{{ count }}"
         keypair: "{{ ec2_keypair_name | default('undefined') }}"
         instance_type: "{{ type | default('t2.micro') }}"
         vpc_subnet_id: "{{ vpc_subnet_id  | default('undefined') }}"

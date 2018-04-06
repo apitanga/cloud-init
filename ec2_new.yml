@@ -14,7 +14,7 @@
       local_action:
         module: ec2
         count: "{{ count }}"
-        keypair: "{{ ec2_keypair_name | default('undefined') }}"
+        keypair: "{{ keypair | default('undefined') }}"
         instance_type: "{{ type | default('t2.micro') }}"
         vpc_subnet_id: "{{ vpc_subnet_id  | default('undefined') }}"
         image: "{{ ami | default('undefined') }}"

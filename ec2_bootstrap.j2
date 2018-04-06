@@ -6,8 +6,8 @@ retry_attempts=10
 attempt=0
 while [[ $attempt -lt $retry_attempts ]]
 do
-  status_code=`curl -k -s -i --data "host_config_key={{ host_config_key }}" https://$tower/api/v2/job_templates/{{ template_id }}/callback/ | head -n 1 | awk '{print $2}'`
-  if [[ $status_code == 202 ]]
+  curl -k -s -i --data "host_config_key={{ host_config_key }}" https://$tower/api/v2/job_templates/{{ template_id }}/callback/
+  rc=$?; if [[ $rc == 0 ]]
     then
     exit 0
   fi

@@ -6,7 +6,7 @@ retry_attempts=10
 attempt=0
 while [[ $attempt -lt $retry_attempts ]]
 do
-  curl -k -s -i --data "host_config_key={{ host_config_key }}" https://$tower/api/v2/job_templates/{{ template_id }}/callback/
+  curl -k --data "host_config_key={{ host_config_key }}" https://$tower/api/v2/job_templates/{{ template_id }}/callback/
   rc=$?; if [[ $rc == 0 ]]
     then
     exit 0

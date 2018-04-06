@@ -29,7 +29,7 @@
         wait: yes
         instance_tags: "{{ tags }}"
         user_data: "{{ lookup('template', 'ec2_bootstrap.j2') }}"
-        user_data: "{{ lookup('template', 'user-data.j2') }}"
+        #user_data: "{{ lookup('template', 'user-data.j2') }}"
         assign_public_ip: "{{ assign_eip | default(true) }}"
       register: ec2
 

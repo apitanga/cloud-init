@@ -5,16 +5,15 @@
   connection: local
 
   vars:
-    set_dns:  False
     tags:
       env:  "{{ tags_env  | default('prod') }}"
       type: "{{ tags_type | default('web') }}"
-    wait_for_ssh: True
 
   tasks:
     - name: Launch instance
       local_action:
         module: ec2
+        count: {{ count }}
         keypair: "{{ ec2_keypair_name | default('undefined') }}"
         instance_type: "{{ type | default('t2.micro') }}"
         vpc_subnet_id: "{{ vpc_subnet_id  | default('undefined') }}"

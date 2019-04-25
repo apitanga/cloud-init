@@ -2,11 +2,6 @@
   hosts: localhost
   gather_facts: no
   connection: local
-  vars:
-      project: colgate-demo
-      auth_kind: serviceaccount
-      zone: "us-central1-a"
-      region: "us-central1"
 
   tasks:
    - name: create a disk

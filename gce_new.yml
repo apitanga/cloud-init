@@ -7,7 +7,7 @@
    - gce:
       instance_names: "{{ instance_names }}"
       machine_type: n1-standard-1
-      image: debian-8
+      image: "{{ image_name }}"
       state: present
       disk_size: 32
      register: gce

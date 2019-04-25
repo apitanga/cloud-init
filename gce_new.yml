@@ -5,7 +5,7 @@
 
   tasks:
    - gce:
-      instance_names: ""{{ instance_names }}"
+      instance_names: "{{ instance_names }}"
       machine_type: n1-standard-1
       image: debian-8
       state: present

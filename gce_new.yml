@@ -20,7 +20,7 @@
       zone: us-east4-a
       project: "{{ gcp_project }}"
       state: present
-      auth_kind: "service_account"
+      auth_kind: "serviceaccount"
      register: disk
   
    - name: create a instance

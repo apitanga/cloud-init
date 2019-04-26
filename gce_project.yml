@@ -3,11 +3,12 @@
   hosts: localhost
   gather_facts: false
   
-  - tasks:
-     gcp_resourcemanager_project:
-       name: My Sample Project
-       id: colgate-{{ 10000000000 | random }}
-       parent:
-         type: organization
-         id: colgate-demo-238700
-       state: present
+  tasks:
+    - name: Create GCP project
+      gcp_resourcemanager_project:
+        name: My Sample Project
+        id: colgate-{{ 10000000000 | random }}
+        parent:
+          type: organization
+          id: colgate-demo-238700
+        state: present

@@ -8,7 +8,7 @@
       gcp_resourcemanager_project:
         name: My Sample Project
         id: colgate-{{ 10000000000 | random }}
-        auth_kind: serviceaccount
+        auth_kind: machine
         parent:
           type: organization
           id: colgate-demo-238700

@@ -3,6 +3,12 @@
   gather_facts: no
   connection: local
 
+  vars_files:
+   - ./vars/vars.yml
+
+  vars:
+   service_account_file: ./vars/ansible-238814-f2a2d39a312f.json
+
   tasks:
    #- gce:
    #   instance_names: "{{ instance_names }}"

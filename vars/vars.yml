@@ -1,7 +1,2 @@
-service_account_file: "ansible-238814-f2a2d39a312f.json"
 #gcp_project: web-development-238814
 gcp_project: "ansible-238814"
-zone: "us-east4-a"
-region: "us-east4"
-image_name: rhel-7-v20190423
-auth_kind: "service_account"

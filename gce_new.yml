@@ -32,7 +32,7 @@
         boot: true
         source: "{{ disk }}"
       network_interfaces:
-      - subnetwork: us-east4-dev 	
+      - subnetwork: us-east4-dev
       state: present
      register: gce
  

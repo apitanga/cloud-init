@@ -13,7 +13,7 @@
       zone: us-east4-a
       project: "{{ gcp_project }}"
       state: present
-      auth_kind: "{{ gcp_cred_kind }}"
+      auth_kind: serviceaccount
       #service_account_file: "{{ gcp_cred_file }}"
      register: disk
   

@@ -27,6 +27,7 @@
       project: "{{ gcp_project }}"
       state: present
       auth_kind: "serviceaccount"
+      service_account_file: "/tmp/ansible-238814-f2a2d39a312f.json"
      register: disk
   
    - name: create a instance
@@ -38,7 +39,7 @@
         boot: true
         source: "{{ disk }}"
       network_interfaces:
-      - subnetwork: us-east4-dev 	
+      - subnetwork: us-east4-dev
       state: present
      register: gce
  

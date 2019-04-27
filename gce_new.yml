@@ -21,7 +21,7 @@
       project: "{{ gcp_project }}"
       state: present
       auth_kind: "serviceaccount"
-      service_account_file: "/root/ansible-238814-f2a2d39a312f.json"
+      service_account_file: "/tmp/ansible-238814-f2a2d39a312f.json"
      register: disk
   
    - name: create a instance

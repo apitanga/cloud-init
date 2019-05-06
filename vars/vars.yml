@@ -1,6 +1,6 @@
 gcp_cloud_disk: "cloud-disk"
 gcp_project: "web-development-238814"
-gcp_cred_file: "/home/ansible/cloud-init/vars/ansible-238814-f2a2d39a312f.json"
+gcp_cred_file: "~/ansible-238814-f2a2d39a312f.json"
 gcp_cred_kind: "serviceaccount"
 gcp_disk_size: "25"
 #gcp_project: "ansible-238814"

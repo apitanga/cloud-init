@@ -1,0 +1,65 @@
+- name: Create an instance
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - vars/vars.yml
+
+  tasks:
+   - name: create a disk
+     gcp_compute_disk:
+         name: "{{ gcp_cloud_disk }}"
+         size_gb: "{{ gcp_disk_size }}"
+         source_image: "{{ gcp_source_image }}"
+         zone: "{{ gcp_disk_zone }}"
+         project: "{{ gcp_project }}"
+         auth_kind: "{{ gcp_cred_kind }}"
+         service_account_file: "{{ gcp_cred_file }}"
+         scopes:
+           - https://www.googleapis.com/auth/compute
+         state: "{{ gcp_disk_state }}"
+     register: disk
+
+   - name: create a network
+     gcp_compute_network_facts:
+      filters:
+      - name: "development"
+      project: "development-network-238800"
+      auth_kind: "{{ gcp_cred_kind }}"
+      service_account_file: "{{ gcp_cred_file }}"
+      scopes:
+        - https://www.googleapis.com/auth/compute
+      #state: facts
+     register: network
+
+   - name: create a instance
+     gcp_compute_instance:
+      name: "test_object"
+      machine_type: n1-standard-1
+      zone: "{{ gcp_disk_zone }}"
+      project: "{{ gcp_project }}"
+      disks:
+      - auto_delete: true
+        boot: true
+        source: "{{ disk }}"
+      network_interfaces:
+      - network: ["projects/development-network-238800/global/networks/development"]
+        #subnetwork: "us-east4-dev"
+      state: present
+     register: gce
+ 
+   - name: Save host data
+     add_host:
+       hostname: "{{ item.public_ip }}"
+       groupname: gce_instances_ips
+     with_items: "{{ gce.instance_data }}"
+
+   - name: Wait for SSH for instances
+     wait_for:
+       delay: 1
+       host: "{{ item.public_ip }}"
+       port: 22
+       state: started
+       timeout: 30
+     with_items: "{{ gce.instance_data }}"

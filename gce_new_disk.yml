@@ -1,4 +1,4 @@
-- name: Create an instance
+- name: Create a disk
   hosts: localhost
   gather_facts: no
   connection: local

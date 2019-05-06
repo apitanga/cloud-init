@@ -1,7 +1,7 @@
-gcp_cloud_disk: "cloud-disk"
 gcp_project: "web-development-238814"
 gcp_cred_file: "~/ansible-238814-f2a2d39a312f.json"
 gcp_cred_kind: "serviceaccount"
+gcp_disk_name: "cloud-disk"
 gcp_disk_size: "25"
 gcp_disk_zone: "us-east4-a"
 gcp_source_image: "projects/gce-uefi-images/global/images/rhel-7-v20190326"

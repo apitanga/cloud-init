@@ -9,7 +9,7 @@
   tasks:
    - name: create a disk
      gcp_compute_disk:
-         name: "{{ gcp_cloud_disk }}"
+         name: "{{ gcp_disk_name }}"
          size_gb: "{{ gcp_disk_size }}"
          source_image: "{{ gcp_source_image }}"
          zone: "{{ gcp_disk_zone }}"

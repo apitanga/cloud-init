@@ -1,0 +1,21 @@
+- name: create GCE instance
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - vars/vars.yml
+
+  tasks:
+          
+    - name: launch instance 
+      gce:
+       instance_names: my-test-instance1
+       machine_type: n1-standard-1
+       image: "{{ gcp_source_image }}"
+       state: present
+       #project_id: "{{ gcp_project }}"
+       disk_size: 32
+       #auth_kind: serviceaccount
+       credentials_file: "{{ gcp_cred_file }}"
+

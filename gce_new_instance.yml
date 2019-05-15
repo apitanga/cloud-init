@@ -38,7 +38,7 @@
       name: "{{ gcp_subnet_name }}"
       region: "{{ gcp_vpc_region }}"
       network: "{{ network }}"
-      ip_cidr_range: 10.8.16.0/20
+      ip_cidr_range: "{{ gcp_subnet_cidr }}"
       project: "{{ gcp_vpc_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
       service_account_file: "{{ gcp_cred_file }}"
@@ -51,7 +51,7 @@
 
    - name: create an address
      gcp_compute_address:
-      name: "address-instance"
+      name: "{{ gcp_instance_name }}"
       project: "{{ gcp_instance_project }}"
       region: "{{ gcp_instance_region }}"
       auth_kind: "{{ gcp_cred_kind }}"
@@ -61,9 +61,9 @@
 
    - name: create an instance
      gcp_compute_instance:
-      name: "cloud-instance"
+      name: "{{ gcp_instance_name }}"
       project: "{{ gcp_instance_project }}"
-      machine_type: n1-standard-1
+      machine_type: "{{ gcp_instance_type }}"
       zone: "{{ gcp_instance_zone }}"
       disks:
       - auto_delete: true

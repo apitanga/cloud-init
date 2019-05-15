@@ -1,9 +1,18 @@
-gcp_project: "web-development-238814"
+#gcp_project: "development-network-238800"
+
 gcp_cred_file: "~/ansible-238814-f2a2d39a312f.json"
 gcp_cred_kind: "serviceaccount"
+
 gcp_disk_name: "cloud-disk"
 gcp_disk_size: "25"
-gcp_disk_zone: "us-east4-a"
-gcp_source_image: "projects/gce-uefi-images/global/images/rhel-7-v20190326"
 gcp_disk_state: "present"
-gcp_instance_subnetwork: "us-east4-dev"
+gcp_source_image: "projects/gce-uefi-images/global/images/rhel-7-v20190326"
+
+gcp_vpc_region: "us-east4"
+gcp_vpc_name: "development"
+gcp_subnet_name: "us-east4-dev"
+gcp_vpc_project: "development-network-238800"
+
+gcp_instance_project: "web-development-238814"
+gcp_instance_zone: "us-east4-a"
+gcp_instance_region: "us-east4"

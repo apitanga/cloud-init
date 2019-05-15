@@ -9,11 +9,11 @@
   tasks:
    - name: create a disk
      gcp_compute_disk:
-         name: "{{ gcp_cloud_disk }}"
+         name: "{{ gcp_disk_name }}"
          size_gb: "{{ gcp_disk_size }}"
          source_image: "{{ gcp_source_image }}"
-         zone: "{{ gcp_disk_zone }}"
-         project: "{{ gcp_project }}"
+         zone: "{{ gcp_instance_zone }}"
+         project: "{{ gcp_instance_project }}"
          auth_kind: "{{ gcp_cred_kind }}"
          service_account_file: "{{ gcp_cred_file }}"
          scopes:
@@ -22,44 +22,82 @@
      register: disk
 
    - name: create a network
-     gcp_compute_network_facts:
-      filters:
-      - name: "development"
-      project: "development-network-238800"
+     gcp_compute_network:
+      name: "{{ gcp_vpc_name }}"
+      project: "{{ gcp_vpc_project }}"
       auth_kind: "{{ gcp_cred_kind }}"
       service_account_file: "{{ gcp_cred_file }}"
       scopes:
         - https://www.googleapis.com/auth/compute
-      #state: facts
+      state: present
      register: network
 
-   - name: create a instance
+
+   - name: create a subnetwork
+     gcp_compute_subnetwork:
+      name: "{{ gcp_subnet_name }}"
+      region: "{{ gcp_vpc_region }}"
+      network: "{{ network }}"
+      ip_cidr_range: 10.8.16.0/20
+      project: "{{ gcp_vpc_project }}"
+      auth_kind: "{{ gcp_cred_kind }}"
+      service_account_file: "{{ gcp_cred_file }}"
+      state: present
+     register: subnetwork
+
+   - name: debug subnetwork
+     debug:
+      msg: "{{ subnetwork.name }}"
+
+   - name: create an address
+     gcp_compute_address:
+      name: "address-instance"
+      project: "{{ gcp_instance_project }}"
+      region: "{{ gcp_instance_region }}"
+      auth_kind: "{{ gcp_cred_kind }}"
+      service_account_file: "{{ gcp_cred_file }}"
+      state: present
+     register: address
+
+   - name: create an instance
      gcp_compute_instance:
-      name: "test_object"
+      name: "cloud-instance"
+      project: "{{ gcp_instance_project }}"
       machine_type: n1-standard-1
-      zone: "{{ gcp_disk_zone }}"
-      project: "{{ gcp_project }}"
+      zone: "{{ gcp_instance_zone }}"
       disks:
       - auto_delete: true
         boot: true
         source: "{{ disk }}"
       network_interfaces:
-      - network: ["projects/development-network-238800/global/networks/development"]
-        #subnetwork: "us-east4-dev"
+      - network: "{{ network }}"
+        subnetwork: "{{ subnetwork }}"
+        access_configs:
+        - name: external NAT
+          nat_ip: "{{ address }}"
+          type: ONE_TO_ONE_NAT
       state: present
-     register: gce
- 
-   - name: Save host data
-     add_host:
-       hostname: "{{ item.public_ip }}"
-       groupname: gce_instances_ips
-     with_items: "{{ gce.instance_data }}"
+      auth_kind: "{{ gcp_cred_kind }}"
+      service_account_file: "{{ gcp_cred_file }}"
+      metadata:
+       istest: true
+     register: instance
 
-   - name: Wait for SSH for instances
-     wait_for:
-       delay: 1
-       host: "{{ item.public_ip }}"
-       port: 22
-       state: started
-       timeout: 30
-     with_items: "{{ gce.instance_data }}"
+   - name: debug instance
+     debug:
+       msg: "{{ instance.name }}"
+ 
+#   - name: Save host data
+#     add_host:
+#       hostname: "{{ instance.name }}"
+#       groupname: gce_instances_ips
+#     with_items: "{{ instance }}"
+#
+#   - name: Wait for SSH for instances
+#     wait_for:
+#       delay: 1
+#       host: "{{ item.public_ip }}"
+#       port: 22
+#       state: started
+#       timeout: 30
+#     with_items: "{{ gce.instance_data }}"

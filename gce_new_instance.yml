@@ -82,10 +82,6 @@
        istest: true
      register: instance
 
-     #   - name: debug instance
-     #debug:
-     #  msg: "{{ instance.name }}"
- 
 #   - name: Save host data
 #     add_host:
 #       hostname: "{{ instance.name }}"

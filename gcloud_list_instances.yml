@@ -1,0 +1,15 @@
+---
+- name: gcloud list instances
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+    - name: execute gcloud
+      shell: gcloud compute instances list
+      register: result
+
+    - name: present results
+      debug: 
+        msg: "{{ result }}"
